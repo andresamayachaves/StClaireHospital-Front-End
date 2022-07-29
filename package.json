@@ -1,0 +1,19 @@
+{
+  "name": "hospital",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "St Claire Hospital Appointments MS",
+  "main": "Hospital.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andresamayachaves/StClaireHospital-Front-End"
+  },
+  "keywords": [
+    "Hospital"
+  ],
+  "author": "Andres Amaya Chaves",
+  "license": "ISC"
+}
