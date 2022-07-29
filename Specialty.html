@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="src/styles/Hospital.css">
+    </head>
+    <body>
+        <br>
+        <h1> Saint Claire Hospital </h1>
+        <h1> COLOMBIA </h1>
+        <h2> ------------------------------------- </h2> 
+        <h2> SPECIALTY 1 </h2><br><br>
+        <button onclick="editSpecialty()"> EDIT SPECIALTY INFO </button>
+        <button onclick="deleteSpecialty()"> DELETE THIS SPECIALTY </button>
+        <body>
+            <div class="main-part">
+                <div class="cpanel">
+                    <div class="icon-part">
+                        <i class="fa fa-users" aria-hidden="true"></i><br><br>
+                        <small id="sp-1"></small>Specialty 1</small> <br>   
+                        <p> Physician: (not assigned yet)</p>
+                    </div>
+                    <div class="card-content-part">
+                        <a href="#"> Show Patient Registries </a>
+                    </div>
+                </div>
+            </div>
+        </body>
+        
+        <br><br>
+
+        <button onclick="addResgistry()"> Add new registry </button>
+        <button onclick="deleteRegistry()"> Delete a registry </button> <br> <br>
+        <h2> ------------------------------------- </h2> 
+        <h3> REGISTRY </h3> 
+        <h3>.   PATIENT NAME   .|.       AGE        .|.     ID NUMBER    .|.   DATE OF APPOINT .|. NUMBER OF APPOINTMENTS</h3>   
+        <h3>----------------------------------------------------------------------------------</h3> 
+        <i id="message1">.   ------------   .|.       ---        .|.     ---------    .|.   --------------- .|. ----------------------</i><br>
+        <i id="message2">.   ------------   .|.       ---        .|.     ---------    .|.   --------------- .|. ----------------------</i><br>
+        <i id="message3">.   ------------   .|.       ---        .|.     ---------    .|.   --------------- .|. ----------------------</i><br>
+        <i id="message4">.   ------------   .|.       ---        .|.     ---------    .|.   --------------- .|. ----------------------</i><br>
+        <i id="message5">.   ------------   .|.       ---        .|.     ---------    .|.   --------------- .|. ----------------------</i><br>
+        <i id="message6">.   ------------   .|.       ---        .|.     ---------    .|.   --------------- .|. ----------------------</i><br>
+        <i id="message7">.   ------------   .|.       ---        .|.     ---------    .|.   --------------- .|. ----------------------</i><br>
+        <i id="message8">.   ------------   .|.       ---        .|.     ---------    .|.   --------------- .|. ----------------------</i><br>
+        <i id="message9">.   ------------   .|.       ---        .|.     ---------    .|.   --------------- .|. ----------------------</i><br>
+        <i id="message10">.   ------------   .|.       ---        .|.     ---------    .|.   --------------- .|. ----------------------</i><br><br>
+        <i id="pager">(Page 1 of 1)</i><br><br>
+        <button onclick="previousRegistryPage()"><<</button> 
+        <button onclick="nextRegistryPage()">>></button> 
+    
+        <script defer src="src/js/Hospital.js"></script>   
+    </body>
+</html>
