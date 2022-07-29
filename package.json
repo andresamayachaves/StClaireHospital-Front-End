@@ -1,6 +1,5 @@
 {
   "name": "hospital",
-  "type": "module",
   "version": "1.0.0",
   "description": "St Claire Hospital Appointments MS",
   "main": "Hospital.js",
@@ -15,5 +14,8 @@
     "Hospital"
   ],
   "author": "Andres Amaya Chaves",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.7.4"
+  }
 }
