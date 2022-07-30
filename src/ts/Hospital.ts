@@ -14,14 +14,6 @@ export interface specialtyInterface{
   }
 
 
-export interface patientRegistryInterface{
-    name:number|null,
-    age:string,
-    identification_number:string,
-    dates_of_appointments:string[], //TODO or just string?
-    number_of_appointments: number|null
-  }
-
 let messageElem1 = document.getElementById("message1")  as HTMLElement
 let messageElem2 = document.getElementById("message2")  as HTMLElement
 let messageElem3 = document.getElementById("message3")  as HTMLElement
@@ -57,16 +49,8 @@ function createSpecialty(){
     updateElementContent(messageElem1, "Please provide the info of the specialty to add.")
     newSpecialtyToBack()
     console.log("Working function")
-
+}
     
-
-}
-function getUserInput(){
-    inputBoxGet("try", "this");
-
-}
-
-function inputBoxGet(spName:string, physician:string){
 
     const inputLine1 = document.querySelector('.input-line1') as HTMLInputElement;
     const inputLine2 = document.querySelector('.input-line2') as HTMLInputElement;
@@ -84,7 +68,6 @@ function newSpecialtyToBack(){
 
 
 console.log(5)
-
 
 /*
 form?.addEventListener("CreateANewSpecialty",handleCreate)
