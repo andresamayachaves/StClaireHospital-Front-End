@@ -1,19 +1,7 @@
 /*const form: HTMLFormElement |null=
 document.querySelector('.hospital-form');
 */
-
-const createSpecialtyBtn = document.querySelector<HTMLButtonElement>('button.createSpecialty')
-
-function createSpecialty(){
-    createSpecialtyBtn
-    console.log("Woking function")
-
-}
-
-
-console.log(5)
-
-
+console.log(5);
 /*
 form?.addEventListener("CreateANewSpecialty",handleCreate)
 
@@ -26,7 +14,7 @@ export interface patientRegistry{
   }
 
 function createSpecialty(){
-    const createSpecialty:HTMLButtonElement = document.createElement('button') as HTMLButtonElement;    
+    const createSpecialty:HTMLButtonElement = document.createElement('button') as HTMLButtonElement;
     createSpecialty.className = 'single-note-delete-button'
     createSpecialty.innerText = 'X'
     createSpecialty.addEventListener('click', ()=> handleDelete(div))
@@ -53,7 +41,7 @@ function handleSubmit(e:SubmitEvent){
           if(response.status === 200){
             state.push(newNote)
   
-            createReminder(newNote);  
+            createReminder(newNote);
             titleInput.value = '';
             reminderInput.value = '';
           }
@@ -72,4 +60,4 @@ function backPageSpecialty(){
 
 function forwardPageSpecialty(){
 
-}*/
+}*/ 
