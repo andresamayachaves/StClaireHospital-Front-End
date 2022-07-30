@@ -1,4 +1,4 @@
-export interface patientRegistryInterface{
+interface patientRegistryInterface{
     name:string,
     age:number|null,
     identification_number:number,
@@ -6,12 +6,11 @@ export interface patientRegistryInterface{
     number_of_appointments: number|null
   }
 
-  export interface specialtyInterface{
-    specialtyName:string,
-    physician:string,
-    patientRegistries:patientRegistryInterface[]
-  }
-
+interface specialtyInterface{
+  specialtyName:string,
+  physician:string,
+  patientRegistries:patientRegistryInterface[]
+}
 
 let messageElem1 = document.getElementById("message1")  as HTMLElement
 let messageElem2 = document.getElementById("message2")  as HTMLElement
@@ -31,46 +30,69 @@ const spName4    = document.getElementById("sp-4") as HTMLElement
 const spName5    = document.getElementById("sp-5") as HTMLElement
 const spName6    = document.getElementById("sp-6") as HTMLElement
 
-function updateElementContent(Elem:HTMLElement, newContent:string){
-    Elem.textContent = newContent
-}
+const ph1        = document.getElementById("sp-1") as HTMLElement
+const ph2        = document.getElementById("sp-1") as HTMLElement
+const ph3        = document.getElementById("sp-1") as HTMLElement
+const ph4        = document.getElementById("sp-1") as HTMLElement
+const ph5        = document.getElementById("sp-1") as HTMLElement
+const ph6        = document.getElementById("sp-1") as HTMLElement
 
-function readInput(){
-    const inputLine1 = document.querySelector('.input-line1') as HTMLInputElement;
-    const inputLine2 = document.querySelector('.input-line2') as HTMLInputElement;
-    return [inputLine1.value, inputLine2.value]
-}
+let nextBoxToUse:number = 1
+
 
 function createSpecialtyButton(){
-
-    /*const createSpecialtyBtn = document.createElement('button') as HTMLButtonElement
-    createSpecialtyBtn.classList.add('btn')
-    createSpecialtyBtn.setAttribute('type','button')
-    createSpecialtyBtn.innerHTML = 'Create'
-
-    createSpecialtyBtn.addEventListener('click', ()=> handleCreateSpecialty())*/
-    
-    updateElementContent(messageElem1, "Please provide the info of the specialty to add.")    
-    console.log("Working function")
+ 
+    updateElementContent(messageElem1, "Please provide the info of the specialty to add.")
 }
     
+function createSpecialty(){
 
-function newSpecialty(spName:string, physician:string){
-
-    let newRegistry:patientRegistryInterface = initNewRegistry()    
-    const newSpecialty:specialtyInterface = {
-        specialtyName: spName,
-        physician:physician,
-        patientRegistries: [newRegistry, newRegistry]
-    }
-    return newSpecialty
+  let newRegistry:patientRegistryInterface = initNewRegistry()  
+  const newSpecialtyX:specialtyInterface = {
+    specialtyName: readInput1().value,
+    physician:readInput2().value,
+    patientRegistries: [newRegistry]
+  }  
+  newSpecialtyToBack(newSpecialtyX)
+  nextBoxToUse +=1;
 }
-
 
 function newSpecialtyToBack(specialtyToSend:specialtyInterface){
-    updateElementContent(messageElem2,"Succesfully sent to Backend")
-    updateElementContent(messageElem3, "ToDo, connect to Backend via DTO")
+
+  updateElementContent(messageElem2, "Succesfully sent to Backend")
+  updateElementContent(messageElem3, "ToDo, connect to Backend via DTO")
+
+  switch (nextBoxToUse){
+    case 1:{
+      updateBox(spName1, ph1, specialtyToSend)
+      break
+    }case 2:{
+      updateBox(spName2, ph2, specialtyToSend)
+      break
+    }case 3:{
+      updateBox(spName3, ph3, specialtyToSend)
+      break
+    }case 4:{
+      updateBox(spName4, ph4, specialtyToSend)
+      break
+    }case 5:{
+      updateBox(spName5, ph5, specialtyToSend)
+      break
+    }case 6:{
+      updateBox(spName6, ph6, specialtyToSend)
+      break
+    }
+  }
+
+  updateElementContent(messageElem3, "ToDo, connect to Backend via DTO")
+  
 }
+
+function updateBox(spName:HTMLElement, ph:HTMLElement, spSend: specialtyInterface){
+  spName.textContent = spSend.specialtyName
+  ph.textContent = spSend.physician
+}
+
 
 function initNewRegistry(){
     const newRegistry:patientRegistryInterface ={     //ToDo do not create at first, 
@@ -84,18 +106,34 @@ function initNewRegistry(){
     return newRegistry
 }
 
-//--------------------------
+function readInput1(){
+  const inputLine1 = document.querySelector('.input-line1') as HTMLInputElement;
+  return inputLine1
+}
 
-function createSpecialty(){
-  let newSpecialtyX:specialtyInterface = newSpecialty(readInput()[0], readInput()[1])    
-  newSpecialtyToBack(newSpecialtyX)
+function readInput2(){
+  const inputLine2 = document.querySelector('.input-line2') as HTMLInputElement;
+  return inputLine2
+}
+
+function updateElementContent(Elem:HTMLElement, newContent:string){
+  Elem.textContent = newContent
 }
 
 
+//--------------------------
+
+
+    /*const createSpecialtyBtn = document.createElement('button') as HTMLButtonElement
+    createSpecialtyBtn.classList.add('btn')
+    createSpecialtyBtn.setAttribute('type','button')
+    createSpecialtyBtn.innerHTML = 'Create'
+
+    createSpecialtyBtn.addEventListener('click', ()=> handleCreateSpecialty())*/
 
 
 
-console.log(5)
+//console.log(5)
 
 /*
 form?.addEventListener("CreateANewSpecialty",handleCreate)

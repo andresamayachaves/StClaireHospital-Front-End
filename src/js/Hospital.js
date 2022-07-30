@@ -1,3 +1,4 @@
+"use strict";
 let messageElem1 = document.getElementById("message1");
 let messageElem2 = document.getElementById("message2");
 let messageElem3 = document.getElementById("message3");
@@ -14,43 +15,60 @@ const spName3 = document.getElementById("sp-3");
 const spName4 = document.getElementById("sp-4");
 const spName5 = document.getElementById("sp-5");
 const spName6 = document.getElementById("sp-6");
-function updateElementContent(Elem, newContent) {
-    Elem.textContent = newContent;
-}
-function readInput1() {
-    const inputLine1 = document.querySelector('.input-line1');
-    return inputLine1;
-}
-function readInput2() {
-    const inputLine2 = document.querySelector('.input-line2');
-    return inputLine2;
-}
+const ph1 = document.getElementById("sp-1");
+const ph2 = document.getElementById("sp-1");
+const ph3 = document.getElementById("sp-1");
+const ph4 = document.getElementById("sp-1");
+const ph5 = document.getElementById("sp-1");
+const ph6 = document.getElementById("sp-1");
+let nextBoxToUse = 1;
 function createSpecialtyButton() {
-    /*const createSpecialtyBtn = document.createElement('button') as HTMLButtonElement
-    createSpecialtyBtn.classList.add('btn')
-    createSpecialtyBtn.setAttribute('type','button')
-    createSpecialtyBtn.innerHTML = 'Create'
-
-    createSpecialtyBtn.addEventListener('click', ()=> handleCreateSpecialty())*/
     updateElementContent(messageElem1, "Please provide the info of the specialty to add.");
-    console.log("Working function");
 }
 function createSpecialty() {
-    const newSpecialtyX = newSpecialty(readInput1().value, readInput2().value);
-    newSpecialtyToBack(newSpecialtyX);
-}
-function newSpecialtyToBack(specialtyToSend) {
-    updateElementContent(messageElem2, specialtyToSend.specialtyName + "Succesfully sent to Backend");
-    updateElementContent(messageElem3, "ToDo, connect to Backend via DTO");
-}
-function newSpecialty(spName, physician) {
     let newRegistry = initNewRegistry();
-    const newSpecialty = {
-        specialtyName: spName,
-        physician: physician,
+    const newSpecialtyX = {
+        specialtyName: readInput1().value,
+        physician: readInput2().value,
         patientRegistries: [newRegistry]
     };
-    return newSpecialty;
+    newSpecialtyToBack(newSpecialtyX);
+    nextBoxToUse += 1;
+}
+function newSpecialtyToBack(specialtyToSend) {
+    updateElementContent(messageElem2, "Succesfully sent to Backend");
+    updateElementContent(messageElem3, "ToDo, connect to Backend via DTO");
+    switch (nextBoxToUse) {
+        case 1: {
+            updateBox(spName1, ph1, specialtyToSend);
+            break;
+        }
+        case 2: {
+            updateBox(spName2, ph2, specialtyToSend);
+            break;
+        }
+        case 3: {
+            updateBox(spName3, ph3, specialtyToSend);
+            break;
+        }
+        case 4: {
+            updateBox(spName4, ph4, specialtyToSend);
+            break;
+        }
+        case 5: {
+            updateBox(spName5, ph5, specialtyToSend);
+            break;
+        }
+        case 6: {
+            updateBox(spName6, ph6, specialtyToSend);
+            break;
+        }
+    }
+    updateElementContent(messageElem3, "ToDo, connect to Backend via DTO");
+}
+function updateBox(spName, ph, spSend) {
+    spName.textContent = spSend.specialtyName;
+    ph.textContent = spSend.physician;
 }
 function initNewRegistry() {
     const newRegistry = {
@@ -63,8 +81,24 @@ function initNewRegistry() {
     };
     return newRegistry;
 }
-//export {};
+function readInput1() {
+    const inputLine1 = document.querySelector('.input-line1');
+    return inputLine1;
+}
+function readInput2() {
+    const inputLine2 = document.querySelector('.input-line2');
+    return inputLine2;
+}
+function updateElementContent(Elem, newContent) {
+    Elem.textContent = newContent;
+}
 //--------------------------
+/*const createSpecialtyBtn = document.createElement('button') as HTMLButtonElement
+createSpecialtyBtn.classList.add('btn')
+createSpecialtyBtn.setAttribute('type','button')
+createSpecialtyBtn.innerHTML = 'Create'
+
+createSpecialtyBtn.addEventListener('click', ()=> handleCreateSpecialty())*/
 //console.log(5)
 /*
 form?.addEventListener("CreateANewSpecialty",handleCreate)
