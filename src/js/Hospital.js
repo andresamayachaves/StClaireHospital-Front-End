@@ -17,10 +17,13 @@ const spName6 = document.getElementById("sp-6");
 function updateElementContent(Elem, newContent) {
     Elem.textContent = newContent;
 }
-function readInput() {
+function readInput1() {
     const inputLine1 = document.querySelector('.input-line1');
+    return inputLine1;
+}
+function readInput2() {
     const inputLine2 = document.querySelector('.input-line2');
-    return [inputLine1.value, inputLine2.value];
+    return inputLine2;
 }
 function createSpecialtyButton() {
     /*const createSpecialtyBtn = document.createElement('button') as HTMLButtonElement
@@ -32,18 +35,22 @@ function createSpecialtyButton() {
     updateElementContent(messageElem1, "Please provide the info of the specialty to add.");
     console.log("Working function");
 }
+function createSpecialty() {
+    const newSpecialtyX = newSpecialty(readInput1().value, readInput2().value);
+    newSpecialtyToBack(newSpecialtyX);
+}
+function newSpecialtyToBack(specialtyToSend) {
+    updateElementContent(messageElem2, specialtyToSend.specialtyName + "Succesfully sent to Backend");
+    updateElementContent(messageElem3, "ToDo, connect to Backend via DTO");
+}
 function newSpecialty(spName, physician) {
     let newRegistry = initNewRegistry();
     const newSpecialty = {
         specialtyName: spName,
         physician: physician,
-        patientRegistries: [newRegistry, newRegistry]
+        patientRegistries: [newRegistry]
     };
     return newSpecialty;
-}
-function newSpecialtyToBack(specialtyToSend) {
-    updateElementContent(messageElem2, "Succesfully sent to Backend");
-    updateElementContent(messageElem3, "ToDo, connect to Backend via DTO");
 }
 function initNewRegistry() {
     const newRegistry = {
@@ -56,13 +63,9 @@ function initNewRegistry() {
     };
     return newRegistry;
 }
-//--------------------------
-function createSpecialty() {
-    let newSpecialtyX = newSpecialty(readInput()[0], readInput()[1]);
-    newSpecialtyToBack(newSpecialtyX);
-}
-console.log(5);
 //export {};
+//--------------------------
+//console.log(5)
 /*
 form?.addEventListener("CreateANewSpecialty",handleCreate)
 
