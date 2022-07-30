@@ -1,24 +1,85 @@
-/*const form: HTMLFormElement |null=
-document.querySelector('.hospital-form');
-*/
+class Registry{
 
-//const createSpecialtyBtn = document.querySelector<HTMLButtonElement>('button.createSpecialty')
+    constructor(){
 
-function handleCreateSpecialty(){
-    console.log("Working HandlingFunction")
+    }
 }
+
+export interface specialtyInterface{
+    specialtyName:string,
+    physician:string,
+    patientRegistries:Registry[],
+    dates_of_appointments:string[], //TODO or just string?
+    number_of_appointments: number|null
+  }
+
+
+export interface patientRegistryInterface{
+    name:number|null,
+    age:string,
+    identification_number:string,
+    dates_of_appointments:string[], //TODO or just string?
+    number_of_appointments: number|null
+  }
+
+let messageElem1 = document.getElementById("message1")  as HTMLElement
+let messageElem2 = document.getElementById("message2")  as HTMLElement
+let messageElem3 = document.getElementById("message3")  as HTMLElement
+let messageElem4 = document.getElementById("message4")  as HTMLElement
+let messageElem5 = document.getElementById("message5")  as HTMLElement
+let messageElem6 = document.getElementById("message6")  as HTMLElement
+let messageElem7 = document.getElementById("message7")  as HTMLElement
+let messageElem8 = document.getElementById("message8")  as HTMLElement
+let messageElem9 = document.getElementById("message9")  as HTMLElement
+let messageElem10= document.getElementById("message10") as HTMLElement
+
+const spName1    = document.getElementById("sp-1") as HTMLElement
+const spName2    = document.getElementById("sp-2") as HTMLElement
+const spName3    = document.getElementById("sp-3") as HTMLElement
+const spName4    = document.getElementById("sp-4") as HTMLElement
+const spName5    = document.getElementById("sp-5") as HTMLElement
+const spName6    = document.getElementById("sp-6") as HTMLElement
+
+function updateElementContent(Elem:HTMLElement, newContent:string){
+    Elem.textContent = newContent
+}
+
 
 function createSpecialty(){
 
-    const createSpecialtyBtn = document.createElement('button') as HTMLButtonElement
-    createSpecialtyBtn.classList.add('btn', 'btn-fanger', 'removeBtn')
+    /*const createSpecialtyBtn = document.createElement('button') as HTMLButtonElement
+    createSpecialtyBtn.classList.add('btn')
     createSpecialtyBtn.setAttribute('type','button')
     createSpecialtyBtn.innerHTML = 'Create'
 
-    createSpecialtyBtn.addEventListener('click', ()=> handleCreateSpecialty())
-
+    createSpecialtyBtn.addEventListener('click', ()=> handleCreateSpecialty())*/
+    
+    updateElementContent(messageElem1, "Please provide the info of the specialty to add.")
+    newSpecialtyToBack()
     console.log("Working function")
 
+    
+
+}
+function getUserInput(){
+    inputBoxGet("try", "this");
+
+}
+
+function inputBoxGet(spName:string, physician:string){
+
+    const inputLine1 = document.querySelector('.input-line1') as HTMLInputElement;
+    const inputLine2 = document.querySelector('.input-line2') as HTMLInputElement;
+
+    const newSpecialty:specialtyInterface = {
+        specialtyName: spName,
+        physician:physician,
+        patientRegistries:[]
+    }
+
+}
+function newSpecialtyToBack(){
+    console.log("ToDo, connect to Backend via DTO")
 }
 
 
