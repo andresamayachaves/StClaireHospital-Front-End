@@ -1,10 +1,10 @@
 body{
 font-family: 'Trebuchet MS', 'Lucida Sans Unicode',
 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif';
-background-image: url("Images/Background.jpg"); 
+background-image: url("Images/BackgroundAlt.jpg");
 background-size: 100% 100%;    
 
-color: rgb(216, 25, 25);
+color: rgb(0, 0, 0);
 font-size: 20px;
 font-weight: bold;
 text-align: center;
@@ -80,10 +80,25 @@ text-align: center;
 
         
 h1{
-    font-family: "Courier New";
-    color: rgb(216, 25, 25);
+    font-family: "Franklin Gothic Medium";
+    color: rgb(255, 255, 255);
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
     font-weight:900;
-    font-size: 56px;
+    font-size: 65px;
+    line-height: 85%;
+    box-align: center;
+    text-shadow: -6px 5px 5px #1305d3e3;
+    box-shadow: 5px 5px 15px 5px #000000;
+    box-sizing:border-box;
+    width: 100%;    
+    padding: 5px;
+    align-content: center;
+}
+h2{
+    font-family: "Franklin Gothic Medium";
+    color: rgb(0, 0, 0);
+    font-weight:900;
+    font-size: 25px;
     line-height: 60%;
 }
 h3{
@@ -92,7 +107,14 @@ h3{
     font-weight:900;
     line-height: 60%;
     font-style: italic;
-    font-size: 20px;
+    font-size: 20px;    
+}
+h4{
+    font-family: "Franklin Gothic Medium";
+    color: rgb(0, 0, 0);
+    font-weight:900;
+    font-size: 45px;
+    line-height: 60%;
 }
 i{
     font-family: "Courier New";
@@ -111,14 +133,14 @@ P{
     font-family: "Courier New";
     color: rgb(255, 255, 255);
     font-weight:900;
-    line-height: 60%;
+    line-height: 290%;
 }
 
 
 button{
     color:rgb(255, 255, 255);
     width: 150px;
-    background: rgb(0, 0, 0);
+    background: #1305d3e3;
     padding-top: 5px;
     padding-bottom: 5px;
     font-weight: bold;
