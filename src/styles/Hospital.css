@@ -127,7 +127,9 @@ i{
 #message1{
     font-style: italic;
 }
-
+#message1{
+    font-style: italic;
+}
 
 P{
     font-family: "Courier New";
@@ -178,3 +180,9 @@ input{
     border-radius: 2px;
     text-align: left;    
     }        
+a{
+    font-family: "Courier New";
+    color: rgb(255, 255, 255);
+    font-weight:900;
+    line-height: 150%;
+}
