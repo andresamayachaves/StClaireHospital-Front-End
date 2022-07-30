@@ -2,11 +2,22 @@
 document.querySelector('.hospital-form');
 */
 
-const createSpecialtyBtn = document.querySelector<HTMLButtonElement>('button.createSpecialty')
+//const createSpecialtyBtn = document.querySelector<HTMLButtonElement>('button.createSpecialty')
+
+function handleCreateSpecialty(){
+    console.log("Working HandlingFunction")
+}
 
 function createSpecialty(){
-    createSpecialtyBtn
-    console.log("Woking function")
+
+    const createSpecialtyBtn = document.createElement('button') as HTMLButtonElement
+    createSpecialtyBtn.classList.add('btn', 'btn-fanger', 'removeBtn')
+    createSpecialtyBtn.setAttribute('type','button')
+    createSpecialtyBtn.innerHTML = 'Create'
+
+    createSpecialtyBtn.addEventListener('click', ()=> handleCreateSpecialty())
+
+    console.log("Working function")
 
 }
 
