@@ -30,10 +30,8 @@ function createSpecialtyButton() {
 
     createSpecialtyBtn.addEventListener('click', ()=> handleCreateSpecialty())*/
     updateElementContent(messageElem1, "Please provide the info of the specialty to add.");
-    newSpecialty(readInput()[0], readInput()[1]);
     console.log("Working function");
 }
-
 function newSpecialty(spName, physician) {
     let newRegistry = initNewRegistry();
     const newSpecialty = {
@@ -41,11 +39,11 @@ function newSpecialty(spName, physician) {
         physician: physician,
         patientRegistries: [newRegistry, newRegistry]
     };
-    newSpecialtyToBack(newSpecialty);
+    return newSpecialty;
 }
 function newSpecialtyToBack(specialtyToSend) {
-    console.log(specialtyToSend.specialtyName + "Succesfully sent to Backend");
-    console.log("ToDo, connect to Backend via DTO");
+    updateElementContent(messageElem2, "Succesfully sent to Backend");
+    updateElementContent(messageElem3, "ToDo, connect to Backend via DTO");
 }
 function initNewRegistry() {
     const newRegistry = {
@@ -58,13 +56,11 @@ function initNewRegistry() {
     };
     return newRegistry;
 }
-
-
-//------------------------------------------
-function createSpecialtyButton() {
-
+//--------------------------
+function createSpecialty() {
+    let newSpecialtyX = newSpecialty(readInput()[0], readInput()[1]);
+    newSpecialtyToBack(newSpecialtyX);
 }
-
 console.log(5);
 //export {};
 /*

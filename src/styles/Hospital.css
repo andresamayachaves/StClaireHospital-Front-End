@@ -117,11 +117,11 @@ h4{
     line-height: 60%;
 }
 i{
-    font-family: "Courier New";
-    color: rgb(255, 255, 255);
+    font-family: "Verdana";
+    color: rgb(0, 0, 0);
     font-weight:900;
     line-height: 60%;
-    font-size: 20px;
+    font-size: 22px;
 
 }
 #message1{
@@ -134,16 +134,47 @@ P{
     color: rgb(255, 255, 255);
     font-weight:900;
     line-height: 290%;
+}.left{
+    color: rgb(0, 0, 0);
+    text-align: left;
+    font-family: "Courier New";
+    font-size: 25px;
+    line-height: 100%;
 }
 
 
 button{
     color:rgb(255, 255, 255);
     width: 150px;
+    height: 60px;
     background: #1305d3e3;
     padding-top: 5px;
     padding-bottom: 5px;
     font-weight: bold;
+    font-size: 16;
+    line-height: 140%;
     border: none;
     border-radius: 2px;    
+    }.pager{
+        color:rgb(255, 255, 255);
+        width: 150px;
+        height: 25px;
+        background: #1f16a0c0;
+        font-weight: bold;
+        font-size: 16;
+        line-height: 0%;
     }
+input{
+    color:#1305d3e3;
+    width: 650px;
+    height: 40px;
+    background: #ffffff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    font-size: 16;
+    line-height: 140%;
+    border: none;
+    border-radius: 2px;
+    text-align: left;    
+    }        

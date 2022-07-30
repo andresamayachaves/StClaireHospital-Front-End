@@ -1,16 +1,15 @@
-class Registry{
-
-    constructor(){
-
-    }
-}
-
-export interface specialtyInterface{
-    specialtyName:string,
-    physician:string,
-    patientRegistries:Registry[],
+export interface patientRegistryInterface{
+    name:string,
+    age:number|null,
+    identification_number:number,
     dates_of_appointments:string[], //TODO or just string?
     number_of_appointments: number|null
+  }
+
+  export interface specialtyInterface{
+    specialtyName:string,
+    physician:string,
+    patientRegistries:patientRegistryInterface[]
   }
 
 
@@ -36,8 +35,13 @@ function updateElementContent(Elem:HTMLElement, newContent:string){
     Elem.textContent = newContent
 }
 
+function readInput(){
+    const inputLine1 = document.querySelector('.input-line1') as HTMLInputElement;
+    const inputLine2 = document.querySelector('.input-line2') as HTMLInputElement;
+    return [inputLine1.value, inputLine2.value]
+}
 
-function createSpecialty(){
+function createSpecialtyButton(){
 
     /*const createSpecialtyBtn = document.createElement('button') as HTMLButtonElement
     createSpecialtyBtn.classList.add('btn')
@@ -46,25 +50,49 @@ function createSpecialty(){
 
     createSpecialtyBtn.addEventListener('click', ()=> handleCreateSpecialty())*/
     
-    updateElementContent(messageElem1, "Please provide the info of the specialty to add.")
-    newSpecialtyToBack()
+    updateElementContent(messageElem1, "Please provide the info of the specialty to add.")    
     console.log("Working function")
 }
     
 
-    const inputLine1 = document.querySelector('.input-line1') as HTMLInputElement;
-    const inputLine2 = document.querySelector('.input-line2') as HTMLInputElement;
+function newSpecialty(spName:string, physician:string){
 
+    let newRegistry:patientRegistryInterface = initNewRegistry()    
     const newSpecialty:specialtyInterface = {
         specialtyName: spName,
         physician:physician,
-        patientRegistries:[]
+        patientRegistries: [newRegistry, newRegistry]
     }
+    return newSpecialty
+}
 
+
+function newSpecialtyToBack(specialtyToSend:specialtyInterface){
+    updateElementContent(messageElem2,"Succesfully sent to Backend")
+    updateElementContent(messageElem3, "ToDo, connect to Backend via DTO")
 }
-function newSpecialtyToBack(){
-    console.log("ToDo, connect to Backend via DTO")
+
+function initNewRegistry(){
+    const newRegistry:patientRegistryInterface ={     //ToDo do not create at first, 
+        //then, retrieve from input
+    name:"testName",
+    age:null,
+    identification_number:0,
+    dates_of_appointments:["notYet","notYet"], //TODO or just string?
+    number_of_appointments: 0
+    }
+    return newRegistry
 }
+
+//--------------------------
+
+function createSpecialty(){
+  let newSpecialtyX:specialtyInterface = newSpecialty(readInput()[0], readInput()[1])    
+  newSpecialtyToBack(newSpecialtyX)
+}
+
+
+
 
 
 console.log(5)
