@@ -1,3 +1,5 @@
+import { setConstantValue } from "typescript"
+
 interface patientRegistryInterface{
     name:string,
     age:number|null,
@@ -12,30 +14,35 @@ interface specialtyInterface{
   patientRegistries:patientRegistryInterface[]
 }
 
-let messageElem1 = document.getElementById("message1")  as HTMLElement
-let messageElem2 = document.getElementById("message2")  as HTMLElement
-let messageElem3 = document.getElementById("message3")  as HTMLElement
-let messageElem4 = document.getElementById("message4")  as HTMLElement
-let messageElem5 = document.getElementById("message5")  as HTMLElement
-let messageElem6 = document.getElementById("message6")  as HTMLElement
-let messageElem7 = document.getElementById("message7")  as HTMLElement
-let messageElem8 = document.getElementById("message8")  as HTMLElement
-let messageElem9 = document.getElementById("message9")  as HTMLElement
-let messageElem10= document.getElementById("message10") as HTMLElement
+let messageElem1 = document.querySelector("#message1")  as HTMLElement
+let messageElem2 = document.querySelector("#message2")  as HTMLElement
+let messageElem3 = document.querySelector("#message3")  as HTMLElement
+let messageElem4 = document.querySelector("#message4")  as HTMLElement
+let messageElem5 = document.querySelector("#message5")  as HTMLElement
+let messageElem6 = document.querySelector("#message6")  as HTMLElement
+let messageElem7 = document.querySelector("#message7")  as HTMLElement
+let messageElem8 = document.querySelector("#message8")  as HTMLElement
+let messageElem9 = document.querySelector("#message9")  as HTMLElement
+let messageElem10= document.querySelector("#message10") as HTMLElement
 
-const spName1    = document.getElementById("sp-1") as HTMLElement
-const spName2    = document.getElementById("sp-2") as HTMLElement
-const spName3    = document.getElementById("sp-3") as HTMLElement
-const spName4    = document.getElementById("sp-4") as HTMLElement
-const spName5    = document.getElementById("sp-5") as HTMLElement
-const spName6    = document.getElementById("sp-6") as HTMLElement
+let prebox1      = document.querySelector("#preBox1") as HTMLElement
+let prebox2      = document.querySelector("#preBox2") as HTMLElement
 
-const ph1        = document.getElementById("sp-1") as HTMLElement
-const ph2        = document.getElementById("sp-1") as HTMLElement
-const ph3        = document.getElementById("sp-1") as HTMLElement
-const ph4        = document.getElementById("sp-1") as HTMLElement
-const ph5        = document.getElementById("sp-1") as HTMLElement
-const ph6        = document.getElementById("sp-1") as HTMLElement
+let updateBtn    = document.querySelector("#updateBtn") as HTMLElement
+
+const spName1    = document.querySelector("#sp-1") as HTMLElement
+const spName2    = document.querySelector("#sp-2") as HTMLElement
+const spName3    = document.querySelector("#sp-3") as HTMLElement
+const spName4    = document.querySelector("#sp-4") as HTMLElement
+const spName5    = document.querySelector("#sp-5") as HTMLElement
+const spName6    = document.querySelector("#sp-6") as HTMLElement
+
+const ph1        = document.querySelector("#ph-1") as HTMLElement
+const ph2        = document.querySelector("#ph-2") as HTMLElement
+const ph3        = document.querySelector("#ph-3") as HTMLElement
+const ph4        = document.querySelector("#ph-4") as HTMLElement
+const ph5        = document.querySelector("#ph-5") as HTMLElement
+const ph6        = document.querySelector("#ph-6") as HTMLElement
 
 const input1 = document.createElement('input') as HTMLInputElement
 input1.classList.add('form-control')
@@ -44,61 +51,83 @@ input1.setAttribute('name','specialtyName')
 input1.setAttribute('placeholder', 'Specialty Name')
 input1.setAttribute('aria-label', 'Specialty Name')
 
+let listOfSpecialties:string[] = ["Specialty 1", "Specialty 2", 
+                                  "Specialty 3", "Specialty 4", 
+                                  "Specialty 5", "Specialty 6"]
 
 let nextBoxToUse:number = 1
+let currentSpecialty = 1
+let state = 1
+
+
+prebox1.style.visibility = "hidden"
+prebox2.style.visibility = "hidden"
+updateBtn.style.visibility = "hidden" 
 
 function createSpecialtyButton(){
  
     updateElementContent(messageElem1, "Please provide the info of the specialty to add.")
+    setState(2)
 }
     
 function createSpecialty(){
   updateElementContent(messageElem1, "ToDo, connect to Backend via DTO")
-  let newRegistry:patientRegistryInterface = initNewRegistry()  
-  //let newSpecialtyX:specialtyInterface = {
-    //specialtyName: readInput1().value,
-    //physician:readInput2().value,
-    //patientRegistries: [newRegistry]
-  //}  
-  //newSpecialtyToBack(newSpecialtyX)
-  
+  let newRegistry:patientRegistryInterface = initNewRegistry() 
+  let newSpecialtyX:specialtyInterface = {
+    specialtyName: readInput1().value, 
+    physician:     readInput2().value,
+    patientRegistries: [newRegistry]
+  }  
+  newSpecialtyToBack(newSpecialtyX)
+  updateSelectedBox(newSpecialtyX)
+  clearInput1()
+  clearInput2()
+
+  prebox1.style.visibility = "hidden"
+  prebox2.style.visibility = "hidden"  
+  updateBtn.style.visibility = "hidden"  
   nextBoxToUse +=1;
 }
 
 function newSpecialtyToBack(specialtyToSend:specialtyInterface){
-
+ 
   updateElementContent(messageElem2, "Succesfully sent to Backend")
-  updateElementContent(messageElem3, "ToDo, connect to Backend via DTO")
-
-  switch (nextBoxToUse){
-    case 1:{
-      updateBox(spName1, ph1, specialtyToSend)
-      break
-    }case 2:{
-      updateBox(spName2, ph2, specialtyToSend)
-      break
-    }case 3:{
-      updateBox(spName3, ph3, specialtyToSend)
-      break
-    }case 4:{
-      updateBox(spName4, ph4, specialtyToSend)
-      break
-    }case 5:{
-      updateBox(spName5, ph5, specialtyToSend)
-      break
-    }case 6:{
-      updateBox(spName6, ph6, specialtyToSend)
-      break
-    }
-  }
-
   updateElementContent(messageElem3, "ToDo, connect to Backend via DTO")
   
 }
 
-function updateBox(spName:HTMLElement, ph:HTMLElement, spSend: specialtyInterface){
-  spName.textContent = spSend.specialtyName
-  ph.textContent = spSend.physician
+function updateSelectedBox(specialtyToUpdate:specialtyInterface){
+  switch (nextBoxToUse){
+    case 1:{
+      updateBox(spName1, ph1, specialtyToUpdate)
+      break
+    }case 2:{
+      updateBox(spName2, ph2, specialtyToUpdate)
+      break
+    }case 3:{
+      updateBox(spName3, ph3, specialtyToUpdate)
+      break
+    }case 4:{
+      updateBox(spName4, ph4, specialtyToUpdate)
+      break
+    }case 5:{
+      updateBox(spName5, ph5, specialtyToUpdate)
+      break
+    }case 6:{
+      updateBox(spName6, ph6, specialtyToUpdate)
+      break
+    }
+  }
+}
+
+function updateBox(spName:HTMLElement, ph:HTMLElement, spUpdate:specialtyInterface){
+  spName.textContent = spUpdate.specialtyName
+  ph.textContent = spUpdate.physician
+}
+
+function clearBox(spName:HTMLElement, ph:HTMLElement){
+  spName.textContent = "---------"
+  ph.textContent = "-----"
 }
 
 
@@ -114,16 +143,108 @@ function initNewRegistry(){
     return newRegistry
 }
 
+
+function deleteSpecialty(){
+
+  updateElementContent(messageElem1, "Please enter the NUMBER of the specialty to delete")
+  prebox1.style.visibility = "visible"
+  prebox2.style.visibility = "hidden"
+  updateBtn.style.visibility = "visible" 
+
+  let boxToErase:number = Number(readInput1().value)
+  deleteSpecialtyById(boxToErase)
+}
+
+function deleteSpecialtyById(ID:number){
+    
+  switch (ID){
+    case 1:{
+      clearBox(spName1, ph1)
+      break
+    }case 2:{
+      clearBox(spName2, ph2)
+      break
+    }case 3:{
+      clearBox(spName3, ph3)
+      break
+    }case 4:{
+      clearBox(spName4, ph4)
+      break
+    }case 5:{
+      clearBox(spName5, ph5)
+      break
+    }case 6:{
+      clearBox(spName6, ph6)
+      break
+    }
+  }
+  deleteSpecialtyInBackend()
+}
+
+function selectCuerrentSpecialty(which:number){
+  currentSpecialty = which
+}
+
+function deleteSpecialtyInBackend(){
+ 
+  //ToDo connection with Backend
+}
+
+
+
+
+function setState(set:number){
+  
+  if (set == 1){
+    prebox1.style.visibility   = "hidden"
+    prebox2.style.visibility   = "hidden"
+    updateBtn.style.visibility = "hidden"
+
+  } else if (set == 2){
+    prebox1.style.visibility   = "visible"
+    prebox2.style.visibility   = "visible"
+    updateBtn.style.visibility = "visible"
+    
+  } else if (set == 3){
+    prebox1.style.visibility   = "visible"
+    prebox2.style.visibility   = "hidden"
+    updateBtn.style.visibility = "visible"
+  }
+
+}
+
+
 function readInput1(){
-  const inputLine1 = document.querySelector('.input-line1') as HTMLInputElement;
+  let inputLine1 = document.querySelector('#input-line1') as HTMLInputElement
   return inputLine1
 }
 
 function readInput2(){
-  const inputLine2 = document.querySelector('.input-line2') as HTMLInputElement;
+  let inputLine2 = document.querySelector('#input-line2') as HTMLInputElement
   return inputLine2
+}
+
+function clearInput1(){
+  let inputLine1 = document.querySelector('#input-line1') as HTMLInputElement
+  inputLine1.value =""
+}
+
+function clearInput2(){
+  let inputLine2 = document.querySelector('#input-line2') as HTMLInputElement
+  inputLine2.value =""
 }
 
 function updateElementContent(Elem:HTMLElement, newContent:string){
   Elem.textContent = newContent
 }
+
+/*
+fetch('url', {
+  method: 'GET',
+  headers:{
+    'Content-type': 'application/jason'
+  },
+})
+.then(response=> response.json)
+.then( data => {
+  debugger})*/
