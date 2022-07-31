@@ -1,5 +1,3 @@
-import { setConstantValue } from "typescript"
-
 interface patientRegistryInterface{
     name:string,
     age:number|null,
@@ -17,13 +15,6 @@ interface specialtyInterface{
 let messageElem1 = document.querySelector("#message1")  as HTMLElement
 let messageElem2 = document.querySelector("#message2")  as HTMLElement
 let messageElem3 = document.querySelector("#message3")  as HTMLElement
-let messageElem4 = document.querySelector("#message4")  as HTMLElement
-let messageElem5 = document.querySelector("#message5")  as HTMLElement
-let messageElem6 = document.querySelector("#message6")  as HTMLElement
-let messageElem7 = document.querySelector("#message7")  as HTMLElement
-let messageElem8 = document.querySelector("#message8")  as HTMLElement
-let messageElem9 = document.querySelector("#message9")  as HTMLElement
-let messageElem10= document.querySelector("#message10") as HTMLElement
 
 let prebox1      = document.querySelector("#preBox1") as HTMLElement
 let prebox2      = document.querySelector("#preBox2") as HTMLElement
@@ -59,19 +50,49 @@ let nextBoxToUse:number = 1
 let currentSpecialty = 1
 let state = 1
 
+/*1. Initial State
+  2. State when Creating a New Specialty 
+  3. State when deleting a Spetialty*/
 
-prebox1.style.visibility = "hidden"
-prebox2.style.visibility = "hidden"
-updateBtn.style.visibility = "hidden" 
+setVisualState(1)
+  
+
+function setVisualState(set:number){
+
+  if (set == 1){
+    prebox1.style.visibility   = "hidden"
+    prebox2.style.visibility   = "hidden"
+    updateBtn.style.visibility = "hidden"
+
+  } else if (set == 2){
+    prebox1.style.visibility   = "visible"
+    prebox2.style.visibility   = "visible"
+    updateBtn.style.visibility = "visible"
+
+  } else if (set == 3){
+    prebox1.style.visibility   = "visible"
+    prebox2.style.visibility   = "hidden"
+    updateBtn.style.visibility = "visible"
+  }
+
+}
 
 function createSpecialtyButton(){
- 
+
+  if(state==1){
+    state = 2
     updateElementContent(messageElem1, "Please provide the info of the specialty to add.")
-    setState(2)
+    updateElementContent(messageElem2, "")
+    updateElementContent(messageElem2, "")
+    setVisualState(2)
+  } else{
+    updateElementContent(messageElem2, "Not valid option. Please continue.")
+    updateElementContent(messageElem3, "")
+  }
 }
     
 function createSpecialty(){
-  updateElementContent(messageElem1, "ToDo, connect to Backend via DTO")
+  
   let newRegistry:patientRegistryInterface = initNewRegistry() 
   let newSpecialtyX:specialtyInterface = {
     specialtyName: readInput1().value, 
@@ -83,10 +104,9 @@ function createSpecialty(){
   clearInput1()
   clearInput2()
 
-  prebox1.style.visibility = "hidden"
-  prebox2.style.visibility = "hidden"  
-  updateBtn.style.visibility = "hidden"  
+  setVisualState(1)
   nextBoxToUse +=1;
+  updateElementContent(messageElem1, "Specialty successfully created")
 }
 
 function newSpecialtyToBack(specialtyToSend:specialtyInterface){
@@ -191,27 +211,6 @@ function deleteSpecialtyInBackend(){
 }
 
 
-
-
-function setState(set:number){
-  
-  if (set == 1){
-    prebox1.style.visibility   = "hidden"
-    prebox2.style.visibility   = "hidden"
-    updateBtn.style.visibility = "hidden"
-
-  } else if (set == 2){
-    prebox1.style.visibility   = "visible"
-    prebox2.style.visibility   = "visible"
-    updateBtn.style.visibility = "visible"
-    
-  } else if (set == 3){
-    prebox1.style.visibility   = "visible"
-    prebox2.style.visibility   = "hidden"
-    updateBtn.style.visibility = "visible"
-  }
-
-}
 
 
 function readInput1(){
