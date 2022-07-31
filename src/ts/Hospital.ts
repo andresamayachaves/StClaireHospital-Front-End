@@ -20,6 +20,7 @@ let prebox1      = document.querySelector("#preBox1") as HTMLElement
 let prebox2      = document.querySelector("#preBox2") as HTMLElement
 
 let updateBtn    = document.querySelector("#updateBtn") as HTMLElement
+let deleteBtn    = document.querySelector("#deleteBtn") as HTMLElement
 
 const spName1    = document.querySelector("#sp-1") as HTMLElement
 const spName2    = document.querySelector("#sp-2") as HTMLElement
@@ -63,16 +64,19 @@ function setVisualState(set:number){
     prebox1.style.visibility   = "hidden"
     prebox2.style.visibility   = "hidden"
     updateBtn.style.visibility = "hidden"
+    deleteBtn.style.visibility = "hidden"
 
   } else if (set == 2){
     prebox1.style.visibility   = "visible"
     prebox2.style.visibility   = "visible"
     updateBtn.style.visibility = "visible"
+    deleteBtn.style.visibility = "hidden"
 
   } else if (set == 3){
     prebox1.style.visibility   = "visible"
     prebox2.style.visibility   = "hidden"
-    updateBtn.style.visibility = "visible"
+    updateBtn.style.visibility = "hidden"
+    deleteBtn.style.visibility = "visible"
   }
 
 }
@@ -81,10 +85,8 @@ function createSpecialtyButton(){
 
   if(state==1){
     state = 2
-    updateElementContent(messageElem1, "Please provide the info of the specialty to add.")
-    updateElementContent(messageElem2, "")
-    updateElementContent(messageElem2, "")
-    setVisualState(2)
+    newMessagesSet("Please provide the info of the specialty to add","", "")
+    setVisualState(state)
   } else{
     updateElementContent(messageElem2, "Not valid option. Please continue.")
     updateElementContent(messageElem3, "")
@@ -107,12 +109,13 @@ function createSpecialty(){
   setVisualState(1)
   nextBoxToUse +=1;
   updateElementContent(messageElem1, "Specialty successfully created")
+  state = 1
 }
 
 function newSpecialtyToBack(specialtyToSend:specialtyInterface){
  
-  updateElementContent(messageElem2, "Succesfully sent to Backend")
-  updateElementContent(messageElem3, "ToDo, connect to Backend via DTO")
+  updateElementContent(messageElem2, "Succesfully created/updated in database")
+  updateElementContent(messageElem3, "")
   
 }
 
@@ -146,8 +149,8 @@ function updateBox(spName:HTMLElement, ph:HTMLElement, spUpdate:specialtyInterfa
 }
 
 function clearBox(spName:HTMLElement, ph:HTMLElement){
-  spName.textContent = "---------"
-  ph.textContent = "-----"
+  spName.textContent = " -- [Specialty to Assign] -- "
+  ph.textContent = " -- [Physician to Assign] -- "
 }
 
 
@@ -166,13 +169,16 @@ function initNewRegistry(){
 
 function deleteSpecialty(){
 
-  updateElementContent(messageElem1, "Please enter the NUMBER of the specialty to delete")
-  prebox1.style.visibility = "visible"
-  prebox2.style.visibility = "hidden"
-  updateBtn.style.visibility = "visible" 
+  if(state==1){
+    updateElementContent(messageElem1, "Please enter the NUMBER of the specialty to delete")
+    setVisualState(3)
+    let boxToErase:number = Number(readInput1().value)
+    deleteSpecialtyById(boxToErase)
 
-  let boxToErase:number = Number(readInput1().value)
-  deleteSpecialtyById(boxToErase)
+  } else{
+    updateElementContent(messageElem2, "Not valid option. Please continue.")
+    updateElementContent(messageElem3, "")
+  }
 }
 
 function deleteSpecialtyById(ID:number){
@@ -235,6 +241,12 @@ function clearInput2(){
 
 function updateElementContent(Elem:HTMLElement, newContent:string){
   Elem.textContent = newContent
+}
+
+function  newMessagesSet(m1:string, m2:string,m3:string){
+  updateElementContent(messageElem1, "Please provide the info of the specialty to add.")
+  updateElementContent(messageElem2, "")
+  updateElementContent(messageElem2, "")
 }
 
 /*
